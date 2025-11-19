@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { BookOpen, Eye, EyeOff, Type, Mic, MicOff, RotateCcw, ChevronLeft, ChevronRight, CheckCircle, AlertCircle, X } from 'lucide-react';
+import { BookOpen, Eye, EyeOff, Type, Mic, MicOff, RotateCcw, ChevronLeft, ChevronRight, CheckCircle, AlertCircle, X, Settings } from 'lucide-react';
 
 // --- CONTENT LIBRARY ---
 const PRESETS = [
@@ -70,16 +70,20 @@ const PRESETS = [
 ];
 
 const App = () => {
-  const [text, setText] = useState(PRESETS[0].content);
-  const [title, setTitle] = useState(PRESETS[0].title);
-  const [presetType, setPresetType] = useState(PRESETS[0].type); // 'strict' or 'fuzzy'
+  const defaultPreset = PRESETS[0];
+  
+  const [text, setText] = useState(defaultPreset.content);
+  const [title, setTitle] = useState(defaultPreset.title);
+  const [presetType, setPresetType] = useState(defaultPreset.type); 
+  const [presetCategory, setPresetCategory] = useState(defaultPreset.category); 
   const [mode, setMode] = useState('study'); // study, blur, initials, type
   const [blurLevel, setBlurLevel] = useState(0);
   const [tokens, setTokens] = useState([]);
   const [userInput, setUserInput] = useState('');
-  const [feedback, setFeedback] = useState(null); // null, { type: 'success'|'error'|'warning', score: number, msg: string }
+  const [feedback, setFeedback] = useState(null); 
   const [showSidebar, setShowSidebar] = useState(true);
   const [isListening, setIsListening] = useState(false);
+  const [isCustom, setIsCustom] = useState(false);
   
   // STT Ref
   const recognitionRef = useRef(null);
@@ -122,6 +126,10 @@ const App = () => {
         }
         processedTokens.push({ type: 'newline', content: '\n', id: Math.random() });
       });
+      // Remove trailing newline if present (from the process loop)
+      if (processedTokens.length > 0 && processedTokens[processedTokens.length - 1].type === 'newline') {
+        processedTokens.pop();
+      }
       return processedTokens;
     };
     setTokens(processText());
@@ -136,7 +144,6 @@ const App = () => {
       recognitionRef.current.continuous = true;
       recognitionRef.current.interimResults = true;
       
-      // Detect language best effort
       const hasChinese = /[\u4e00-\u9fa5]/.test(text);
       recognitionRef.current.lang = hasChinese ? 'zh-TW' : 'en-US';
 
@@ -161,7 +168,8 @@ const App = () => {
 
   const toggleListening = () => {
     if (!recognitionRef.current) {
-      alert("Speech recognition is not supported in this browser. Try Chrome or Safari.");
+      // Use custom alert box instead of window.alert()
+      setFeedback({ type: 'error', score: 0, msg: "Speech recognition is not supported in this browser. Try Chrome or Safari." });
       return;
     }
     if (isListening) {
@@ -173,6 +181,7 @@ const App = () => {
       
       recognitionRef.current.start();
       setIsListening(true);
+      setFeedback(null);
     }
   };
 
@@ -185,12 +194,9 @@ const App = () => {
     if (mode === 'initials') {
        if (token.type === 'space' || token.type === 'punct') return 'visible';
        
-       // Logic: Always show first letter of words.
-       // For Chinese (chars), show first char after punctuation/newline, hide others.
        if (token.type === 'word') return 'initial'; 
        
        if (token.type === 'char') {
-          // Look back to see if we are at start of phrase
           let i = index - 1;
           while(i >= 0 && tokens[i].type === 'space') i--;
           if (i < 0 || tokens[i].type === 'newline' || tokens[i].type === 'punct') return 'visible';
@@ -202,13 +208,11 @@ const App = () => {
     // Blur Mode logic
     if (mode === 'blur') {
       if (blurLevel === 0) return 'visible';
-      // User requested strict vanishing. Let's make punct vanish only at >90%
       if (token.type === 'punct') {
           return blurLevel > 90 ? 'hidden' : 'visible';
       }
       if (token.type === 'space') return 'visible';
 
-      // Deterministic randomness based on token content + index
       const seed = (index * 7 + token.content.length * 13 + blurLevel * 23) % 100;
       return seed < blurLevel ? 'hidden' : 'visible';
     }
@@ -226,12 +230,24 @@ const App = () => {
       const targetChars = clean(rawTarget);
       const inputChars = clean(rawInput);
       
-      if (targetChars === inputChars) {
-        setFeedback({ type: 'success', score: 100, msg: "Perfect Recall!" });
-      } else if (targetChars.startsWith(inputChars) && inputChars.length > 0) {
-        setFeedback({ type: 'warning', score: Math.floor((inputChars.length / targetChars.length) * 100), msg: "Good start, keep going!" });
+      const maxLength = Math.max(targetChars.length, inputChars.length);
+      const minLength = Math.min(targetChars.length, inputChars.length);
+      
+      let matchCount = 0;
+      for (let i = 0; i < minLength; i++) {
+        if (targetChars[i] === inputChars[i]) {
+          matchCount++;
+        }
+      }
+      
+      const score = Math.round((matchCount / maxLength) * 100);
+
+      if (score === 100) {
+        setFeedback({ type: 'success', score, msg: "Perfect Recall! (100% character match)" });
+      } else if (score >= 90) {
+        setFeedback({ type: 'warning', score, msg: "Excellent! Almost perfect, check for slight errors." });
       } else {
-        setFeedback({ type: 'error', score: 0, msg: "Incorrect characters found. Check your memory." });
+        setFeedback({ type: 'error', score, msg: `Score: ${score}%. Try again for better character accuracy.` });
       }
       return;
     }
@@ -240,11 +256,15 @@ const App = () => {
     const targetWords = rawTarget.toLowerCase().match(/\b[\w']+\b/g) || [];
     const inputWords = rawInput.toLowerCase().match(/\b[\w']+\b/g) || [];
 
-    if (targetWords.length === 0) return;
+    if (targetWords.length === 0) {
+      setFeedback({ type: 'error', score: 0, msg: "The target text contains no recognizable words for fuzzy matching." });
+      return;
+    }
 
     let hits = 0;
     let inputIndex = 0;
     
+    // We use a sequential match to preserve some order
     targetWords.forEach(word => {
       const foundAt = inputWords.indexOf(word, inputIndex);
       if (foundAt !== -1) {
@@ -256,13 +276,13 @@ const App = () => {
     const score = Math.round((hits / targetWords.length) * 100);
 
     if (score === 100) {
-      setFeedback({ type: 'success', score, msg: "Perfect Accuracy!" });
+      setFeedback({ type: 'success', score, msg: "Perfect Accuracy! (100% word match)" });
     } else if (score >= 80) {
-      setFeedback({ type: 'success', score, msg: "Excellent! You got the main points." });
+      setFeedback({ type: 'success', score, msg: "Excellent! You got the main points and structure." });
     } else if (score >= 50) {
       setFeedback({ type: 'warning', score, msg: "Getting there. Try to recall more details." });
     } else {
-      setFeedback({ type: 'error', score, msg: "Low accuracy. Try reading it again." });
+      setFeedback({ type: 'error', score, msg: "Low word match accuracy. Try reading it again." });
     }
   };
 
@@ -270,14 +290,29 @@ const App = () => {
     setText(p.content);
     setTitle(p.title);
     setPresetType(p.type);
+    setPresetCategory(p.category);
+    setIsCustom(false);
     setMode('study');
     setBlurLevel(0);
     setUserInput('');
     setFeedback(null);
     if (window.innerWidth < 768) setShowSidebar(false);
   };
+  
+  const handleCustomTextChange = (e) => {
+    const newText = e.target.value;
+    setText(newText);
+    setTitle("Custom Text");
+    setIsCustom(true);
+  };
 
-  const isTesting = mode === 'type';
+  const allCategories = [...new Set(PRESETS.map(p => p.category)), 'Custom'];
+  const isLearningMode = mode === 'blur' || mode === 'initials';
+  const isTestingMode = mode === 'type';
+  
+  // Sidebar blur logic: Blur the library when in any mode designed to test memory (blur, initials, type)
+  const isSidebarBlurred = isTestingMode || isLearningMode;
+
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans flex flex-col md:flex-row">
@@ -288,11 +323,11 @@ const App = () => {
         bg-white border-r border-slate-200 flex-shrink-0 flex flex-col overflow-hidden transition-all duration-300 relative
       `}>
         
-        {isTesting && (
+        {isSidebarBlurred && (
           <div className="absolute inset-0 bg-slate-100/95 backdrop-blur-sm z-50 flex flex-col items-center justify-center p-6 text-center text-slate-500">
             <EyeOff size={48} className="mb-4 text-slate-300" />
-            <p className="font-medium">Library hidden during test.</p>
-            <p className="text-xs mt-2">Finish testing or switch modes to access library.</p>
+            <p className="font-medium">Library hidden to test memory.</p>
+            <p className="text-xs mt-2">Switch to "Read" mode to access library.</p>
           </div>
         )}
 
@@ -304,46 +339,55 @@ const App = () => {
         </div>
 
         <div className="p-4 flex-1 overflow-y-auto">
+          {/* Preset List */}
           <div className="mb-6">
-             <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Classical / Poems</h3>
-             <div className="space-y-1">
-               {PRESETS.filter(p => p.category !== 'Speech').map(p => (
-                 <button 
-                   key={p.id}
-                   onClick={() => loadPreset(p)}
-                   className={`w-full text-left px-3 py-2 rounded-md text-sm transition-all truncate ${title === p.title ? 'bg-indigo-50 text-indigo-700 font-medium' : 'hover:bg-slate-50 text-slate-600'}`}
-                 >
-                   {p.title}
-                 </button>
-               ))}
-             </div>
+             <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Preset Content</h3>
+             {allCategories.filter(c => c !== 'Custom').map(category => (
+                <div key={category} className="mb-4">
+                    <h4 className="text-sm font-semibold text-slate-600 mb-1 border-b border-slate-100 pb-1">{category}</h4>
+                    <div className="space-y-1">
+                        {PRESETS.filter(p => p.category === category).map(p => (
+                            <button 
+                                key={p.id}
+                                onClick={() => loadPreset(p)}
+                                className={`w-full text-left px-3 py-2 rounded-md text-sm transition-all truncate ${title === p.title ? 'bg-indigo-50 text-indigo-700 font-medium' : 'hover:bg-slate-50 text-slate-600'}`}
+                            >
+                                {p.title}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+             ))}
           </div>
 
-          <div className="mb-6">
-             <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Speeches</h3>
-             <div className="space-y-1">
-               {PRESETS.filter(p => p.category === 'Speech').map(p => (
-                 <button 
-                   key={p.id}
-                   onClick={() => loadPreset(p)}
-                   className={`w-full text-left px-3 py-2 rounded-md text-sm transition-all truncate ${title === p.title ? 'bg-indigo-50 text-indigo-700 font-medium' : 'hover:bg-slate-50 text-slate-600'}`}
-                 >
-                   {p.title}
-                 </button>
-               ))}
-             </div>
-          </div>
-
+          {/* Custom Input */}
           <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">Custom Input</h3>
+          
+          <div className="space-y-2 mb-3">
+              <select
+                value={presetType}
+                onChange={(e) => setPresetType(e.target.value)}
+                disabled={!isCustom}
+                className={`w-full p-2 text-sm border rounded-lg bg-white ${isCustom ? 'border-indigo-300' : 'border-slate-200 bg-slate-50 text-slate-400'}`}
+              >
+                  <option value="fuzzy">Fuzzy Match (Speeches/Prose)</option>
+                  <option value="strict">Strict Match (Poems/Classical)</option>
+              </select>
+              <select
+                value={presetCategory}
+                onChange={(e) => setPresetCategory(e.target.value)}
+                disabled={!isCustom}
+                className={`w-full p-2 text-sm border rounded-lg bg-white ${isCustom ? 'border-indigo-300' : 'border-slate-200 bg-slate-50 text-slate-400'}`}
+              >
+                  {allCategories.map(c => <option key={c} value={c}>{c}</option>)}
+              </select>
+          </div>
+
           <textarea
             className="w-full h-32 p-3 text-sm border border-slate-200 rounded-lg bg-slate-50 focus:ring-2 focus:ring-indigo-500 focus:border-transparent focus:outline-none transition-all"
-            placeholder="Paste custom text..."
+            placeholder="Paste custom text here..."
             value={text}
-            onChange={(e) => {
-              setText(e.target.value);
-              setTitle("Custom Text");
-              setPresetType('fuzzy'); // Default to fuzzy for custom
-            }}
+            onChange={handleCustomTextChange}
           />
         </div>
       </div>
@@ -362,6 +406,9 @@ const App = () => {
             </button>
             <span className="font-semibold text-slate-700 truncate max-w-[150px] sm:max-w-md">
               {title}
+            </span>
+            <span className="text-xs font-medium text-indigo-500 bg-indigo-50 px-2 py-0.5 rounded-full hidden sm:inline-block">
+                {presetCategory} - {presetType === 'strict' ? 'Strict' : 'Fuzzy'}
             </span>
           </div>
 
@@ -388,11 +435,11 @@ const App = () => {
         <div className="flex-1 overflow-y-auto bg-slate-50 p-4 md:p-8 flex justify-center">
           <div className="max-w-3xl w-full bg-white rounded-xl shadow-sm border border-slate-200 p-6 md:p-12 min-h-[60vh] relative">
             
-            {mode === 'type' ? (
+            {isTestingMode ? (
               <div className="flex flex-col h-full">
                 <div className="flex items-center justify-between mb-4">
                   <p className="text-sm text-slate-500">
-                    Type or speak the text from memory. {presetType === 'fuzzy' ? '(Fuzzy Match Enabled)' : '(Strict Match Required)'}
+                    Type or speak the text from memory. **{presetType === 'fuzzy' ? 'Fuzzy Match' : 'Strict Match'}** enabled.
                   </p>
                   <button
                     onClick={toggleListening}
@@ -443,40 +490,43 @@ const App = () => {
               </div>
             ) : (
               // Reading / Learning Mode
-              <div className={`text-xl md:text-2xl font-serif leading-loose text-slate-800 whitespace-pre-wrap transition-opacity duration-300 ${mode === 'blur' && blurLevel > 90 ? 'select-none' : ''}`}>
-                {tokens.map((token, idx) => {
-                  if (token.type === 'newline') return <br key={token.id} />;
-                  if (token.type === 'space') return <span key={token.id}> </span>;
-                  
-                  const visibility = getVisibility(token, idx);
-                  
-                  // Initial Letter Rendering
-                  if (visibility === 'initial' && token.type === 'word') {
-                    return (
-                       <span key={token.id} className="inline-block mx-0.5 text-indigo-900/50 border-b border-slate-200">
-                          <span className="font-bold text-indigo-700">{token.content[0]}</span>
-                          <span className="opacity-0">{token.content.slice(1)}</span>
-                       </span>
-                    );
-                  }
+              // Added overflow-y-auto here to ensure text scroll capability
+              <div className="h-full overflow-y-auto">
+                  <div className={`text-xl md:text-2xl font-serif leading-loose text-slate-800 whitespace-pre-wrap transition-opacity duration-300 ${mode === 'blur' && blurLevel > 90 ? 'select-none' : ''}`}>
+                    {tokens.map((token, idx) => {
+                      if (token.type === 'newline') return <br key={token.id} />;
+                      if (token.type === 'space') return <span key={token.id}> </span>;
+                      
+                      const visibility = getVisibility(token, idx);
+                      
+                      // Initial Letter Rendering
+                      if (visibility === 'initial' && token.type === 'word') {
+                        return (
+                          <span key={token.id} className="inline-block mx-0.5 text-indigo-900/50 border-b border-slate-200">
+                              <span className="font-bold text-indigo-700">{token.content[0]}</span>
+                              <span className="opacity-0">{token.content.slice(1)}</span>
+                          </span>
+                        );
+                      }
 
-                  return (
-                    <span 
-                      key={token.id} 
-                      className={`
-                        transition-all duration-700 inline-block
-                        ${token.type === 'char' ? '' : 'mx-0.5'}
-                        ${visibility === 'hidden' ? 'text-transparent bg-slate-200 rounded-sm px-[1px]' : ''}
-                        ${visibility === 'visible' && token.type === 'punct' ? 'text-slate-400' : ''}
-                      `}
-                      style={{ 
-                        filter: visibility === 'hidden' && mode === 'blur' ? `blur(${Math.max(0, blurLevel / 15)}px)` : 'none'
-                      }}
-                    >
-                      {token.content}
-                    </span>
-                  );
-                })}
+                      return (
+                        <span 
+                          key={token.id} 
+                          className={`
+                            transition-all duration-700 inline-block
+                            ${token.type === 'char' ? '' : 'mx-0.5'}
+                            ${visibility === 'hidden' ? 'text-transparent bg-slate-200 rounded-sm px-[1px]' : ''}
+                            ${visibility === 'visible' && token.type === 'punct' ? 'text-slate-400' : ''}
+                          `}
+                          style={{ 
+                            filter: visibility === 'hidden' && mode === 'blur' ? `blur(${Math.max(0, blurLevel / 15)}px)` : 'none'
+                          }}
+                        >
+                          {token.content}
+                        </span>
+                      );
+                    })}
+                  </div>
               </div>
             )}
           </div>
