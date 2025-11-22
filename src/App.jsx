@@ -12,7 +12,7 @@ const PRESETS = [
     content: `慈母手中線，遊子身上衣。\n臨行密密縫，意恐遲遲歸。\n誰言寸草心，報得三春暉。`
   },
   {
-    id: 'dengjinlingfenghuangtai',
+    id: 'dengjinling',
     title: '登金陵鳳凰台 (李白)',
     category: 'Poetry',
     type: 'strict',
