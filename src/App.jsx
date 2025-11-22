@@ -12,6 +12,14 @@ const PRESETS = [
     content: `慈母手中線，遊子身上衣。\n臨行密密縫，意恐遲遲歸。\n誰言寸草心，報得三春暉。`
   },
   {
+    id: 'dengjinlingfenghuangtai',
+    title: '登金陵鳳凰台 (李白)',
+    category: 'Poetry',
+    type: 'strict',
+    lang: 'zh',
+    content: `鳳凰臺上鳳凰遊，鳳去臺空江自流。\n吳宮花草埋幽徑，晉代衣冠成古丘。\n三山半落青天外，二水中分白鷺洲。\n總為浮雲能蔽日，長安不見使人愁。`
+  },
+  {
     id: 'loushimei',
     title: '陋室銘 (劉禹錫)',
     category: 'Classical',
