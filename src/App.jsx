@@ -20,6 +20,14 @@ const PRESETS = [
     content: `鳳凰臺上鳳凰遊，鳳去臺空江自流。\n吳宮花草埋幽徑，晉代衣冠成古丘。\n三山半落青天外，二水中分白鷺洲。\n總為浮雲能蔽日，長安不見使人愁。`
   },
   {
+    id: 'jinlingjiu',
+    title: '金陵酒肆留別 (李白)',
+    category: 'Poetry',
+    type: 'strict',
+    lang: 'zh',
+    content: `風吹柳花滿店香，吳姬壓酒勸客嘗。\n金陵子弟來相送，欲行不行各盡觴。\n請君試問東流水，別意與之誰短長。`
+  },
+  {
     id: 'loushimei',
     title: '陋室銘 (劉禹錫)',
     category: 'Classical',
