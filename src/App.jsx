@@ -37,7 +37,7 @@ const PRESETS = [
   },
   {
     id: 'pipaxing',
-    title: '琵琶行 (白居易) - Excerpt',
+    title: '琵琶行 (白居易) (擷取)',
     category: 'Classical',
     type: 'strict',
     lang: 'zh',
@@ -58,6 +58,30 @@ const PRESETS = [
     type: 'strict',
     lang: 'zh',
     content: `余憶童稚時，能張目對日，明察秋毫。見藐小微物，必細察其紋理，故時有物外之趣。\n夏蚊成雷，私擬作群鶴舞空，心之所向，則或千或百，果然鶴也；昂首觀之，項為之強。`
+  },
+  {
+    id: '114achinesel7',
+    title: '跟著公共藝術去旅行 (擷取)',
+    category: 'Prose',
+    type: 'fuzzy',
+    lang: 'zh',
+    content: `再前往梅花鹿園區的路上，佇立著一隻散發冷冽金屬光澤，全身布滿花朵的公鹿。像樹枝般昂揚的鹿角，融入在樹林中，搭配著色彩餅粉的花苞，看起來花團錦簇。`
+  },
+  {
+    id: 'guogurenzhuang',
+    title: '過故人莊',
+    category: 'Classical',
+    type: 'strict',
+    lang: 'zh',
+    content: `故人具雞黍，邀我至田家。\n綠樹村邊合，青山郭外斜。\n開軒面場圃，把酒話桑麻。\n待到重陽日，還來就菊花。`
+  },
+  {
+    id: '114achinesel11',
+    title: '走一段海岸 (擷取)',
+    category: 'Prose',
+    type: 'fuzzy',
+    lang: 'zh',
+    content: `不管激昂澎湃或文雅婉約，不同海岸的拍岸濤聲，聽起來有時是帶著愉悅節奏的奔騰，有時聽起來叨叨絮絮，像是在抱怨或泣訴。`
   },
   {
     id: 'mlk_dream',
