@@ -63,7 +63,7 @@ const PRESETS = [
     id: '114achinesel7',
     title: '跟著公共藝術去旅行 (擷取)',
     category: 'Prose',
-    type: 'fuzzy',
+    type: 'strict',
     lang: 'zh',
     content: `再前往梅花鹿園區的路上，佇立著一隻散發冷冽金屬光澤，全身布滿花朵的公鹿。像樹枝般昂揚的鹿角，融入在樹林中，搭配著色彩餅粉的花苞，看起來花團錦簇。`
   },
@@ -79,7 +79,7 @@ const PRESETS = [
     id: '114achinesel11',
     title: '走一段海岸 (擷取)',
     category: 'Prose',
-    type: 'fuzzy',
+    type: 'strict',
     lang: 'zh',
     content: `不管激昂澎湃或文雅婉約，不同海岸的拍岸濤聲，聽起來有時是帶著愉悅節奏的奔騰，有時聽起來叨叨絮絮，像是在抱怨或泣訴。`
   },
