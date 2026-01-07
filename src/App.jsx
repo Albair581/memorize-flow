@@ -411,7 +411,7 @@ const App = () => {
                 className={`w-full p-2 text-sm border rounded-lg bg-white ${isCustom ? 'border-indigo-300' : 'border-slate-200 bg-slate-50 text-slate-400'}`}
               >
                   <option value="fuzzy">Fuzzy Match (Speeches/Prose)</option>
-                  <option value="strict">Strict Match (Poems/Classical)</option>
+                  <option value="strict">Strict Match (Poems/Classical/Prose)</option>
               </select>
               <select
                 value={presetCategory}
