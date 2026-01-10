@@ -41,23 +41,15 @@ const PRESETS = [
     category: 'Classical',
     type: 'strict',
     lang: 'zh',
-    content: `潯陽江頭夜送客，楓葉荻花秋瑟瑟。\n主人下馬客在船，舉酒欲飲無管弦。\n醉不成歡慘將別，別時茫茫江浸月。\n忽聞水上琵琶聲，主人忘歸客不發。\n尋聲闇問彈者誰，琵琶聲停欲語遲。\n移船相近邀相見，添酒回燈重開宴。\n千呼萬喚始出來，猶抱琵琶半遮面。`
-  },
-  {
-    id: 'dizigui',
-    title: '弟子規 (總敘)',
-    category: 'Classical',
-    type: 'strict',
-    lang: 'zh',
-    content: `弟子規，聖人訓。\n首孝悌，次謹信。\n汎愛眾，而親仁。\n有餘力，則學文。`
+    content: `潯陽江頭夜送客，楓葉荻花秋瑟瑟。\n主人下馬客在船，舉酒欲飲無管弦。\n醉不成歡慘將別，別時茫茫江浸月。\n忽聞水上琵琶聲，主人忘歸客不發。\n尋聲暗問彈者誰？琵琶聲停欲語遲。\n移船相近邀相見，添酒回燈重開宴。\n千呼萬喚始出來，猶抱琵琶半遮面。\n轉軸撥弦三兩聲，未成曲調先有情。\n弦弦掩抑聲聲思，似訴平生不得志。\n低眉信手續續彈，說盡心中無限事。\n輕攏慢捻抹復挑，初為霓裳後六么。\n大弦嘈嘈如急雨，小弦切切如私語。\n嘈嘈切切錯雜彈，大珠小珠落玉盤。\n間關鶯語花底滑，幽咽泉流冰下難。\n冰泉冷澀弦凝絕，凝絕不通聲暫歇。\n別有幽愁暗恨生，此時無聲勝有聲。\n銀瓶乍破水漿迸，鐵騎突出刀槍鳴。\n曲終收撥當心畫，四弦一聲如裂帛。\n東船西舫悄無言，唯見江心秋月白。\n沉吟放撥插弦中，整頓衣裳起斂容。\n自言本是京城女，家在蝦蟆陵下住。\n十三學得琵琶成，名屬教坊第一部。\n曲罷曾教善才服，妝成每被秋娘妒。\n五陵年少爭纏頭，一曲紅綃不知數。\n鈿頭銀篦擊節碎，血色羅裙翻酒污。\n今年歡笑復明年，秋月春風等閒度。\n弟走從軍阿姨死，暮去朝來顏色故。\n門前冷落鞍馬稀，老大嫁作商人婦。\n商人重利輕別離，前月浮梁買茶去。\n去來江口守空船，繞船月明江水寒。\n夜深忽夢少年事，夢啼妝淚紅闌乾。\n我聞琵琶已嘆息，又聞此語重唧唧。\n同是天涯淪落人，相逢何必曾相識！\n我從去年辭帝京，謫居臥病潯陽城。\n潯陽地僻無音樂，終歲不聞絲竹聲。\n住近湓江地低濕，黃蘆苦竹繞宅生。\n其間旦暮聞何物？杜鵑啼血猿哀鳴。\n春江花朝秋月夜，往往取酒還獨傾。\n豈無山歌與村笛？嘔啞嘲哳難為聽。\n今夜聞君琵琶語，如聽仙樂耳暫明。\n莫辭更坐彈一曲，為君翻作琵琶行。\n感我此言良久立，卻坐促弦弦轉急。\n淒淒不似向前聲，滿座重聞皆掩泣。\n座中泣下誰最多？江州司馬青衫濕。\n`
   },
   {
     id: 'ershi',
-    title: '兒時記趣 (沈復)',
+    title: '兒時記趣 (沈復) (擷取)',
     category: 'Classical',
     type: 'strict',
     lang: 'zh',
-    content: `余憶童稚時，能張目對日，明察秋毫。見藐小微物，必細察其紋理，故時有物外之趣。\n夏蚊成雷，私擬作群鶴舞空，心之所向，則或千或百，果然鶴也；昂首觀之，項為之強。`
+    content: `又常於土牆凹凸處、花臺小草叢雜處，蹲其身，使與臺齊；定神細視，以叢草為林，蟲蟻為獸；以土礫凸者為丘，凹者為壑，神遊其中，怡然自得。一日，見二蟲鬥草間，觀之，興正濃，忽有龐然大物，拔山倒樹而來，蓋一癩蝦蟆也。舌一吐而二蟲盡為所吞。余年幼，方出神，不覺呀然驚恐。神定，捉蝦蟆，鞭數十，驅之別院。`
   },
   {
     id: '114achinesel7',
@@ -85,27 +77,19 @@ const PRESETS = [
   },
   {
     id: 'mlk_dream',
-    title: 'I Have a Dream (Martin Luther King Jr.)',
+    title: 'I Have a Dream (Martin Luther King Jr.) (Excerpt)',
     category: 'Speech',
     type: 'fuzzy',
     lang: 'en',
-    content: `I say to you today, my friends, so even though we face the difficulties of today and tomorrow, I still have a dream. It is a dream deeply rooted in the American dream. I have a dream that one day this nation will rise up and live out the true meaning of its creed: "We hold these truths to be self-evident, that all men are created equal."`
+    content: `I say to you today, my friends, so even though we face the difficulties of today and tomorrow, I still have a dream. It is a dream deeply rooted in the American dream. I have a dream that one day this nation will rise up and live out the true meaning of its creed: "We hold these truths to be self-evident: that all men are created equal." I have a dream that one day on the red hills of Georgia the sons of former slaves and the sons of former slave owners will be able to sit down together at the table of brotherhood. I have a dream that one day even the state of Mississippi, a state sweltering with the heat of injustice, sweltering with the heat of oppression, will be transformed into an oasis of freedom and justice. I have a dream that my four little children will one day live in a nation where they will not be judged by the color of their skin but by the content of their character. I have a dream today. I have a dream that one day, down in Alabama, with its vicious racists, with its governor having his lips dripping with the words of interposition and nullification; one day right there in Alabama, little black boys and black girls will be able to join hands with little white boys and white girls as sisters and brothers. I have a dream today. I have a dream that one day every valley shall be exalted, every hill and mountain shall be made low, the rough places will be made plain, and the crooked places will be made straight, and the glory of the Lord shall be revealed, and all flesh shall see it together."`
   },
   {
     id: 'steve_jobs',
-    title: 'Stanford Commencement Speech (Steve Jobs)',
+    title: 'Stanford Commencement Speech (Steve Jobs) (Excerpt)',
     category: 'Speech',
     type: 'fuzzy',
     lang: 'en',
-    content: `You can't connect the dots looking forward; you can only connect them looking backwards. So you have to trust that the dots will somehow connect in your future. You have to trust in something — your gut, destiny, life, karma, whatever. This approach has never let me down, and it has made all the difference in my life.`
-  },
-  {
-    id: 'duolingo_luis',
-    title: 'Duolingo Story (Luis von Ahn)',
-    category: 'Speech',
-    type: 'fuzzy',
-    lang: 'en',
-    content: `And the question that I like to ask is: what does the millionth richest person in the world buy that you can't buy? And it turns out, not much. They can buy a slightly faster car, they can buy a slightly bigger house, maybe a private jet. But if you have a smartphone and internet access, you have access to the same information that they have.`
+    content: `Of course, it was impossible to connect the dots looking forward when I was in college, but it was very, very clear looking backwards 10 years later. Again, you can't connect the dots looking forward. You can only connect them looking backwards. So you have to trust that the dots will somehow connect in your future. You have to trust in something, your gut, destiny, life, karma, whatever, because believing that the dots will connect down the road will give you the confidence to follow your heart, even when it leads you off the well-worn path, and that will make all the difference. `
   }
 ];
 
