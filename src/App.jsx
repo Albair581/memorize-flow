@@ -69,7 +69,7 @@ const PRESETS = [
   },
   {
     id: 'guogurenzhuang',
-    title: '過故人莊',
+    title: '過故人莊 (孟浩然)',
     category: 'Classical',
     type: 'strict',
     lang: 'zh',
@@ -82,6 +82,14 @@ const PRESETS = [
     type: 'strict',
     lang: 'zh',
     content: `不管激昂澎湃或文雅婉約，不同海岸的拍岸濤聲，聽起來有時是帶著愉悅節奏的奔騰，有時聽起來叨叨絮絮，像是在抱怨或泣訴。`
+  },
+  {
+    id: 'shengshengman',
+    title: '聲聲慢 (李清照)',
+    category: 'Classical',
+    type: 'strict',
+    lang: 'zh',
+    content: `尋尋覓覓，冷冷清清，悽悽慘慘戚戚。\n乍暖還寒時候，最難將息。\n三杯兩盞淡酒，怎敵他晚來風急？\n雁過也，正傷心，卻是舊時相識。\n滿地黃花堆積。憔悴損，如今有誰堪摘？\n守著窗兒，獨自怎生得黑？\n梧桐更兼細雨，到黃昏，點點滴滴。\n這次第，怎一個愁字了得？`
   },
   {
     id: 'mlk_dream',
