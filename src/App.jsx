@@ -9,7 +9,7 @@ const PRESETS = [
     category: 'Poetry',
     type: 'strict',
     lang: 'zh',
-    content: `山中相送罷，\n日暮掩柴扉。\n春草年年綠，\n王孫歸不歸。`
+    content: `山中相送罷，\n日暮掩柴扉。\n春草明年綠，\n王孫歸不歸。`
   },
   {
     id: 'jianke',
