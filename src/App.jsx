@@ -4,6 +4,22 @@ import { BookOpen, Eye, EyeOff, Type, Mic, MicOff, RotateCcw, ChevronLeft, Chevr
 // --- CONTENT LIBRARY ---
 const PRESETS = [
   {
+    id: 'songbie',
+    title: '送別（王維）',
+    category: 'Poetry',
+    type: 'strict',
+    lang: 'zh',
+    content: `山中相送罷，\n日暮掩柴扉。\n春草年年綠，\n王孫歸不歸。`
+  },
+  {
+    id: 'jianke',
+    title: '劍客（賈島）',
+    category: 'Poetry',
+    type: 'strict',
+    lang: 'zh',
+    content: `十年磨一劍，\n霜刃未曾試。\n今日把示君，\n誰有不平事？`
+  },
+  {
     id: 'youziyin',
     title: '遊子吟 (孟郊)',
     category: 'Poetry',
@@ -82,6 +98,14 @@ const PRESETS = [
     type: 'strict',
     lang: 'zh',
     content: `不管激昂澎湃或文雅婉約，不同海岸的拍岸濤聲，聽起來有時是帶著愉悅節奏的奔騰，有時聽起來叨叨絮絮，像是在抱怨或泣訴。`
+  },
+  {
+    id: '114bchinesel1',
+    title: '遊走在世界的市場裡（擷取）',
+    category: 'Prose',
+    type: 'strict',
+    lang: 'zh',
+    content: `湖光山色、名勝古蹟，固然引人入勝，但是再美的風景、再令人讚嘆的歷史建築，都不能像早晨的市場那樣，給我那麼真實可及、活生生的生活感。\n\n成熟豔紅的番茄，不會擺在紅通通的辣椒旁邊，得讓明黃的節瓜花或翠綠的青椒和番茄比鄰，方可彼此襯托，相得益彰。`
   },
   {
     id: 'shengshengman',
