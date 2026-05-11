@@ -86,7 +86,7 @@ const PRESETS = [
   {
     id: 'guogurenzhuang',
     title: '過故人莊 (孟浩然)',
-    category: 'Classical',
+    category: 'Poetry',
     type: 'strict',
     lang: 'zh',
     content: `故人具雞黍，邀我至田家。\n綠樹村邊合，青山郭外斜。\n開軒面場圃，把酒話桑麻。\n待到重陽日，還來就菊花。`
@@ -116,6 +116,30 @@ const PRESETS = [
     content: `尋尋覓覓，冷冷清清，悽悽慘慘戚戚。\n乍暖還寒時候，最難將息。\n三杯兩盞淡酒，怎敵他晚來風急？\n雁過也，正傷心，卻是舊時相識。\n滿地黃花堆積，憔悴損，如今有誰堪摘？\n守著窗兒，獨自怎生得黑？\n梧桐更兼細雨，到黃昏，點點滴滴。\n這次第，怎一個愁字了得？`
   },
   {
+    id: 'shanjuqiumin',
+    title: '山居秋暝（王維）',
+    category: 'Poetry',
+    type: 'strict',
+    lang: 'zh',
+    content: `空山新雨後，天氣晚來秋。\n明月松間照，清泉石上流。\n竹喧歸浣女，蓮動下漁舟。\n隨意春芳歇，王孫自可留。`
+  },
+  {
+    id: 'chunwang',
+    title: '春望（杜甫）',
+    category: 'Poetry',
+    type: 'strict',
+    lang: 'zh',
+    content: `國破山河在，城春草木深。\n感時花濺淚，恨別鳥驚心。\n烽火連三月，家書抵萬金。\n白頭搔更短，渾欲不勝簪。`
+  },
+  {
+    id: 'fudeguyuancaosongbie',
+    title: '賦得古原草送別（白居易）',
+    category: 'Poetry',
+    type: 'strict',
+    lang: 'zh',
+    content: `離離原上草，一歲一枯榮。\n野火烧不盡，春風吹又生。\n遠芳侵古道，晴翠接荒城。\n又送王孫去，萋萋滿別情。`
+  },
+  {
     id: 'shengyuyouhuansiyuanle',
     title: '生於憂患死於安樂 (孟子)',
     category: 'Classical',
@@ -134,7 +158,7 @@ const PRESETS = [
   {
     id: 'shuidiaogetou',
     title: '水調歌頭 (蘇軾)',
-    category: 'Classical',
+    category: 'Poetry',
     type: 'strict',
     lang: 'zh',
     content: `明月幾時有，把酒問青天，\n不知天上宮闕，今夕是何年。\n我欲乘風歸去，又恐瓊樓玉宇，高處不勝寒；\n起舞弄清影，何似在人間。\n轉朱閣，低綺戶，照無眠；\n不應有恨，何事長向別時圓？\n人有悲歡離合，月有陰晴圓缺，此事古難全；\n但願人長久，千里共嬋娟。`
