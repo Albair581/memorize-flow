@@ -116,6 +116,14 @@ const PRESETS = [
     content: `尋尋覓覓，冷冷清清，悽悽慘慘戚戚。\n乍暖還寒時候，最難將息。\n三杯兩盞淡酒，怎敵他晚來風急？\n雁過也，正傷心，卻是舊時相識。\n滿地黃花堆積，憔悴損，如今有誰堪摘？\n守著窗兒，獨自怎生得黑？\n梧桐更兼細雨，到黃昏，點點滴滴。\n這次第，怎一個愁字了得？`
   },
   {
+    id: 'shuidiaogetou',
+    title: '水調歌頭 (蘇軾)',
+    category: 'Poetry',
+    type: 'strict',
+    lang: 'zh',
+    content: `明月幾時有，把酒問青天，\n不知天上宮闕，今夕是何年。\n我欲乘風歸去，又恐瓊樓玉宇，高處不勝寒；\n起舞弄清影，何似在人間。\n轉朱閣，低綺戶，照無眠；\n不應有恨，何事長向別時圓？\n人有悲歡離合，月有陰晴圓缺，此事古難全；\n但願人長久，千里共嬋娟。`
+  },
+  {
     id: 'shanjuqiumin',
     title: '山居秋暝（王維）',
     category: 'Poetry',
@@ -140,6 +148,30 @@ const PRESETS = [
     content: `離離原上草，一歲一枯榮。\n野火烧不盡，春風吹又生。\n遠芳侵古道，晴翠接荒城。\n又送王孫去，萋萋滿別情。`
   },
   {
+    id: 'wanglushanpubu',
+    title: '望廬山瀑布（李白）',
+    category: 'Poetry',
+    type: 'strict',
+    lang: 'zh',
+    content: `日照香爐生紫煙，\n遙看瀑布掛前川。\n飛流直下三千尺，\n疑是銀河落九天。`
+  },
+  {
+    id: 'zengbie',
+    title: '贈別（杜牧）',
+    category: 'Poetry',
+    type: 'strict',
+    lang: 'zh',
+    content: `多情卻似總無情，\n惟覺樽前笑不成。\n蠟燭有心還惜別，\n替人垂淚到天明。`
+  },
+  {
+    id: 'qingpingdiao',
+    title: '清平調（李白）',
+    category: 'Poetry',
+    type: 'strict',
+    lang: 'zh',
+    content: `雲想衣裳花想容，\n春風拂檻露華濃。\n若非群玉山頭見，\n會向瑤台月下逢。`
+  },
+  {
     id: 'shengyuyouhuansiyuanle',
     title: '生於憂患死於安樂 (孟子)',
     category: 'Classical',
@@ -154,14 +186,6 @@ const PRESETS = [
     type: 'strict',
     lang: 'zh',
     content: `人非聖賢，安能無所不知？\n止知其一，惟恐不止其一，復求知其二者，上也；\n止知其一，因人言始知有其二者，次也；\n止知其一，人言有其二而莫之信者，又其次也；\n止知其一，惡人言有其二者，斯下之下矣。\n\n有工夫讀書，謂之福；有力量濟人，謂之福；\n有學問著述，謂之福；無是非到耳，謂之福；\n有多聞、直、諒之友，謂之福。\n\n人莫樂於閒，非無所事事之謂也。\n閒則能讀書，閒則能游名勝，\n閒則能交益友，閒則能飲酒，閒則能著書。\n天下之樂，孰大於是？\n\n凡事不宜刻，若讀書則不可不刻；\n凡事不宜貪，若買書則不可不貪；\n凡事不宜痴，若行善則不可不痴。`
-  },
-  {
-    id: 'shuidiaogetou',
-    title: '水調歌頭 (蘇軾)',
-    category: 'Poetry',
-    type: 'strict',
-    lang: 'zh',
-    content: `明月幾時有，把酒問青天，\n不知天上宮闕，今夕是何年。\n我欲乘風歸去，又恐瓊樓玉宇，高處不勝寒；\n起舞弄清影，何似在人間。\n轉朱閣，低綺戶，照無眠；\n不應有恨，何事長向別時圓？\n人有悲歡離合，月有陰晴圓缺，此事古難全；\n但願人長久，千里共嬋娟。`
   },
   {
     id: 'mlk_dream',
