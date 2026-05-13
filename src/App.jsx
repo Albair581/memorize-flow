@@ -172,6 +172,30 @@ const PRESETS = [
     content: `雲想衣裳花想容，\n春風拂檻露華濃。\n若非群玉山頭見，\n會向瑤台月下逢。`
   },
   {
+    id: 'zhuzhici',
+    title: '竹枝詞（劉禹錫）',
+    category: 'Poetry',
+    type: 'strict',
+    lang: 'zh',
+    content: `楊柳青青江水平，\n聞郎江上唱歌聲。\n東邊日出西邊雨，\n道是無晴卻有晴。`
+  },
+  {
+    id: 'shuxiang',
+    title: '蜀相（杜甫）',
+    category: 'Poetry',
+    type: 'strict',
+    lang: 'zh',
+    content: `丞相祠堂何處尋，錦官城外柏森森。\n映階碧草自春色，隔葉黃鸝空好音。\n三顧頻煩天下計，兩朝開濟老臣心。\n出師未捷身先死，長使英雄淚滿襟。`
+  },
+  {
+    id: 'wuti',
+    title: '無題（李商隱）',
+    category: 'Poetry',
+    type: 'strict',
+    lang: 'zh',
+    content: `相見時難別亦難，東風無力百花殘。\n春蠶到死絲方盡，蠟炬成灰淚始乾。\n曉鏡但愁雲鬢改，夜吟應覺月光寒。\n蓬山此去無多路，青鳥殷勤為探看。`
+  },
+  {
     id: 'shengyuyouhuansiyuanle',
     title: '生於憂患死於安樂 (孟子)',
     category: 'Classical',
