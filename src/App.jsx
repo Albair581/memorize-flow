@@ -201,7 +201,7 @@ const PRESETS = [
     category: 'Poetry',
     type: 'strict',
     lang: 'zh',
-    content: `嶺外音書絕，\n經冬復立春。\n近鄉情更怯，\n不敢問來人。`
+    content: `嶺外音書斷，\n經冬復立春。\n近鄉情更怯，\n不敢問來人。`
   },
   {
     id: 'zhongnanbieye',
