@@ -188,12 +188,36 @@ const PRESETS = [
     content: `丞相祠堂何處尋，錦官城外柏森森。\n映階碧草自春色，隔葉黃鸝空好音。\n三顧頻煩天下計，兩朝開濟老臣心。\n出師未捷身先死，長使英雄淚滿襟。`
   },
   {
-    id: 'wuti',
+    id: 'wutilishangyin',
     title: '無題（李商隱）',
     category: 'Poetry',
     type: 'strict',
     lang: 'zh',
     content: `相見時難別亦難，東風無力百花殘。\n春蠶到死絲方盡，蠟炬成灰淚始乾。\n曉鏡但愁雲鬢改，夜吟應覺月光寒。\n蓬山此去無多路，青鳥殷勤為探看。`
+  },
+  {
+    id: 'duhanjiang',
+    title: '渡漢江（宋之問）',
+    category: 'Poetry',
+    type: 'strict',
+    lang: 'zh',
+    content: `嶺外音書絕，\n經冬復立春。\n近鄉情更怯，\n不敢問來人。`
+  },
+  {
+    id: 'zhongnanbieye',
+    title: '終南別業（王維）',
+    category: 'Poetry',
+    type: 'strict',
+    lang: 'zh',
+    content: `中歲頗好道，晚家南山陲。\n興來每獨往，勝事空自知。\n行到水窮處，坐看雲起時。\n偶爾值林叟，談笑無還期。`
+  },
+  {
+    id: 'langtaoshajiuquhuanghewanlisha',
+    title: '浪淘沙 - 九曲黃河萬里沙（劉禹錫）',
+    category: 'Poetry',
+    type: 'strict',
+    lang: 'zh',
+    content: `九曲黃河萬里沙，\n浪淘風簸自天涯。\n如今直上銀河去，\n同到牽牛織女家。`
   },
   {
     id: 'shengyuyouhuansiyuanle',
