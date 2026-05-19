@@ -134,7 +134,7 @@ const PRESETS = [
   {
     id: 'shuidiaogetou',
     title: '水調歌頭 (蘇軾)',
-    category: 'Poetry',
+    category: 'Classical',
     type: 'strict',
     lang: 'zh',
     content: `明月幾時有，把酒問青天，\n不知天上宮闕，今夕是何年。\n我欲乘風歸去，又恐瓊樓玉宇，高處不勝寒；\n起舞弄清影，何似在人間。\n轉朱閣，低綺戶，照無眠；\n不應有恨，何事長向別時圓？\n人有悲歡離合，月有陰晴圓缺，此事古難全；\n但願人長久，千里共嬋娟。`
